@@ -8,6 +8,8 @@ var process = d3.select("#filter-btn");
 
    d3.select("tbody").html("");
 
+   d3.event.preventDefault();
+
 // Get the value property of the input element
     var date_time = d3.select("#datetime").property("value");
      console.log(date_time);
@@ -21,31 +23,29 @@ var process = d3.select("#filter-btn");
     var shape = d3.select("#shape").property("value");
      console.log(shape);
 
-     var state_name = d3.select("#state").property("value");
+    var state_name = d3.select("#state").property("value");
      console.log(state_name);
 
-    var filteredData1 = tableData.filter(record => record.datetime === date_time)
-     console.log(filteredData1)
+    var filteredData = tableData
 
-    var filteredData2 = tableData.filter(record => record.city === city_name)
-     console.log(filteredData2)
+    if (date_time != "") {filteredData = filteredData.filter(record => record.datetime === date_time)
+        console.log(filteredData)}
 
-    var filteredData3 = tableData.filter(record => record.country === country_name)
-     console.log(filteredData3)
+    if (city_name != "") {filteredData = filteredData.filter(record => record.city === city_name)
+        console.log(filteredData)}
 
-    var filteredData4 = tableData.filter(record => record.shape === shape)
-     console.log(filteredData4)
+    if (country_name != "") {filteredData = filteredData.filter(record => record.country === country_name)
+        console.log(filteredData)}
+    
+    if (shape != "") {filteredData = filteredData.filter(record => record.shape === shape)
+        console.log(filteredData)}
+    
+    if (state_name != "") {filteredData = filteredData.filter(record => record.state === state_name)
+        console.log(filteredData)}
 
-    var filteredData5 = tableData.filter(record => record.state === state_name)
-     console.log(filteredData5)
-
-
+    
 //  Display the filtered dataset
-    filteredData1.forEach(displayTable);
-    filteredData2.forEach(displayTable);
-    filteredData3.forEach(displayTable);
-    filteredData4.forEach(displayTable);
-    filteredData5.forEach(displayTable);
+    filteredData.forEach(displayTable)
 
 });
 
